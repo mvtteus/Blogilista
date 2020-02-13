@@ -1,3 +1,5 @@
+const lodash = require('lodash')
+
 const dummy = (blogs) => {
     return 1
 }
@@ -11,8 +13,17 @@ const favoriteBlog = (blogs) => {
     return blogs.filter(blog => blog.likes === mostLikes)[0]
 }
 
+const mostBlogs = (blogs) => {
+    let grouped = lodash.chain(blogs).groupBy('author')
+    .toPairs().map(pair => lodash.zipObject(['author', 'blogs'], pair)).value()
+    let mostBlgs = Math.max.apply(null, grouped.map(author => author.blogs.length))
+    let found = grouped.filter(author => author.blogs.length === mostBlgs).map((value, key) => ({author: value.author, blogs: value.blogs.length}))
+    return found[0]
+}
+
 module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog
+    favoriteBlog,
+    mostBlogs
   }
