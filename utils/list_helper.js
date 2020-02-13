@@ -17,13 +17,34 @@ const mostBlogs = (blogs) => {
     let grouped = lodash.chain(blogs).groupBy('author')
     .toPairs().map(pair => lodash.zipObject(['author', 'blogs'], pair)).value()
     let mostBlgs = Math.max.apply(null, grouped.map(author => author.blogs.length))
-    let found = grouped.filter(author => author.blogs.length === mostBlgs).map((value, key) => ({author: value.author, blogs: value.blogs.length}))
+    let found = grouped.filter(author => author.blogs.length === mostBlgs)
+    .map((value, key) => ({author: value.author, blogs: value.blogs.length}))
     return found[0]
+}
+
+const mostLikess = (blogs) => {
+    let grouped = lodash.chain(blogs).groupBy('author')
+    .toPairs().map(pair => lodash.zipObject(['author', 'blogs'], pair)).value()
+
+    let mostLikes = Math.max.apply(null, grouped.map(author => sum(author.likes)))
+    let found = grouped.filter(author => sum(author.likes) === mostLikes)
+    .map((value, key) => ({author: value.author, likes: sum(value.likes)}))
+    return found[0]
+}
+
+const mostLikes = (blogs) => {
+    let grouped = lodash.chain(blogs)
+    .groupBy('author')
+    .map((value, key) => ({author: key, likes: totalLikes(value)})).value()
+    let mostLikes = Math.max.apply(null, grouped.map(item => item.likes))
+    let found = grouped.filter(author => author.likes === mostLikes)[0]
+    return found
 }
 
 module.exports = {
     dummy,
     totalLikes,
     favoriteBlog,
-    mostBlogs
+    mostBlogs,
+    mostLikes
   }
