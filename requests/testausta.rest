@@ -1,9 +1,8 @@
-PUT  http://localhost:3003/api/blogs/5e46817f0acf90352463e946
+POST  http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "likes": 55,
-    "title": "sdf koodia",
-    "author": "jasmiina mylys",
-    "url": "huuti.herokuapp.com"
+    "username": "matias",
+    "name": "matias",
+    "password": "huutista"
 }
