@@ -10,27 +10,24 @@ blogsRouter.get('/', (request, response) => {
       })
   })
   
-blogsRouter.post('/', (request, response) => {
-  const body = request.body
-  const userr = User.findById(body.userId)
+  blogsRouter.post('/', async (request, response, next) => {
+    const body = request.body
   
-  const blog = new Blog ({
-    title: body.title,
-    author: body.author,
-    url: body.url,
-    user: userr._id,
-    likes: body.likes
-  })
-
-  if (blog.title === undefined || blog.url === undefined) {
-    response.status(400).json()
-  } else {
-    blog
-    .save()
-    .then(result => {
-      response.status(201).json(result)
+    const user = await User.findById(body.userId)
+  
+    const blog = new Blog({
+      title: body.title,
+      author: body.author,
+      url: body.url,
+      user: user._id,
+      likes: body.likes
     })
-  }
+  
+    const savedBlog = await blog.save()
+    user.blogs = user.blogs.concat(savedBlog._id)
+    await user.save()
+  
+    response.json(savedBlog.toJSON())
 })
 
 blogsRouter.delete('/:id', async (request, response) =>  {
