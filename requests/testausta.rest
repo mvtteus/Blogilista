@@ -2,8 +2,8 @@ POST  http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "krääh",
-    "author": "jasmiina myllys",
-    "url": "myllys.io",
-    "likes": 66
+    "likes": 55,
+    "title": "sdf koodia",
+    "author": "jasmiina mylys",
+    "url": "huuti.herokuapp.com"
 }
