@@ -1,5 +1,6 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
+const User = require('../models/user')
 
 blogsRouter.get('/', (request, response) => {
     Blog
@@ -10,8 +11,16 @@ blogsRouter.get('/', (request, response) => {
   })
   
 blogsRouter.post('/', (request, response) => {
-  const user = User.findById(request.body.userId)
-  const blog = new Blog(request.body)
+  const body = request.body
+  const userr = User.findById(body.userId)
+  
+  const blog = new Blog ({
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    user: userr._id,
+    likes: body.likes
+  })
 
   if (blog.title === undefined || blog.url === undefined) {
     response.status(400).json()
