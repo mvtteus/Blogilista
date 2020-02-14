@@ -9,8 +9,10 @@ blogsRouter.get('/', (request, response) => {
       })
   })
   
-blogsRouter.post('/', (request, response, next) => {
+blogsRouter.post('/', (request, response) => {
+  const user = User.findById(request.body.userId)
   const blog = new Blog(request.body)
+
   if (blog.title === undefined || blog.url === undefined) {
     response.status(400).json()
   } else {
