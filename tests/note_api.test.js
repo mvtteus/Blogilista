@@ -51,7 +51,6 @@ test('posting goes as planned', async () => {
     title: "iha ok koodia",
     author: "eero perola",
     url: "hyperluettelo.herokuapp.com",
-    likes: 77
   }
 
   await api
@@ -63,11 +62,13 @@ test('posting goes as planned', async () => {
   const response = await api.get('/api/blogs')
 
   const titles = response.body.map(r => r.title)
+  const latestLikes = response.body.filter(item => item.title === "iha ok koodia")[0].likes
 
   expect(response.body.length).toBe(initialBlogs.length + 1)
   expect(titles).toContain(
     'iha ok koodia'
   )
+  expect(latestLikes).toBe(0)
 })
 
 afterAll(() => {
