@@ -38,7 +38,6 @@ blogsRouter.get('/', (request, response) => {
 
 blogsRouter.delete('/:id', async (request, response) =>  {
   const id = request.params.id
-  const body = request.body
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
   if (!request.token || !decodedToken.id) {
     return response.status(401).json({ error: 'token missing or invalid' })
@@ -49,7 +48,7 @@ blogsRouter.delete('/:id', async (request, response) =>  {
     await Blog.findByIdAndRemove(id)
     response.status(204).json()
   } else {
-    return response.status(401).json({ error: 'token does not match blog creators id' })
+    return response.status(401).json({ error: 'deleter id does not match blog creators id' })
   }
 })
 
