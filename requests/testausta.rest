@@ -1,7 +1,10 @@
-POST  http://localhost:3003/api/login
+POST  http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3NlIiwiaWQiOiI1ZTRhODFmM2EyYmZiOTFiZGNmNWNjZjkiLCJpYXQiOjE1ODE5NDEyNTR9.cvzZ4kMq3dEWULp1MXMSChd6n4bVP2ntwQVYCltXrc4
 
 {
-    "user": "peijooni",
-    "password": "huutista"
+    "likes": 55,
+    "title": "sdf koodia",
+    "author": "hoasdho",
+    "url": "huuti.herokuapp.com"
 }
