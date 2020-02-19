@@ -1,10 +1,2 @@
-POST  http://localhost:3003/api/blogs
-Content-Type: application/json
+DELETE http://localhost:3003/api/blogs/5e4a81f3a2bfb91bdcf5ccf9
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hc3NlIiwiaWQiOiI1ZTRhODFmM2EyYmZiOTFiZGNmNWNjZjkiLCJpYXQiOjE1ODE5NDEyNTR9.cvzZ4kMq3dEWULp1MXMSChd6n4bVP2ntwQVYCltXrc4
-
-{
-    "likes": 55,
-    "title": "sdf koodia",
-    "author": "hoasdho",
-    "url": "huuti.herokuapp.com"
-}

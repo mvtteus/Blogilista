@@ -1,0 +1,10 @@
+POST  http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBlbmEiLCJpZCI6IjVlNGE2Mzk0MGQyZjczMjI2NDgxOTBkMiIsImlhdCI6MTU4MTkzNDIzNH0.XEhQlTeFB9yvV-27bC20kA1HXSNkDmtIgb2NDe1V9gw
+
+{
+    "likes": 55,
+    "title": "KAAPPI",
+    "author": "hoasdho",
+    "url": "huuti.herokuapp.com"
+}
